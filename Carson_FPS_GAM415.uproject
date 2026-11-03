@@ -1,0 +1,22 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{F3CBE28F-44B9-C6BE-B4A4-5E9746073C9F}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "Carson_FPS_GAM415",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ModelingToolsEditorMode",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		}
+	]
+}
