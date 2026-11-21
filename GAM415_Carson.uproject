@@ -1,11 +1,11 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "{F3CBE28F-44B9-C6BE-B4A4-5E9746073C9F}",
+	"EngineAssociation": "5.1",
 	"Category": "",
 	"Description": "",
 	"Modules": [
 		{
-			"Name": "Carson_FPS_GAM415",
+			"Name": "GAM415_Carson",
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
 			"AdditionalDependencies": [

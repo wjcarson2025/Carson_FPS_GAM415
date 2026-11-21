@@ -6,17 +6,17 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "TP_WeaponComponent.generated.h"
 
-class ACarson_FPS_GAM415Character;
+class AGAM415_CarsonCharacter;
 
 UCLASS(Blueprintable, BlueprintType, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class CARSON_FPS_GAM415_API UTP_WeaponComponent : public USkeletalMeshComponent
+class GAM415_CARSON_API UTP_WeaponComponent : public USkeletalMeshComponent
 {
 	GENERATED_BODY()
 
 public:
 	/** Projectile class to spawn */
 	UPROPERTY(EditDefaultsOnly, Category=Projectile)
-	TSubclassOf<class ACarson_FPS_GAM415Projectile> ProjectileClass;
+	TSubclassOf<class AGAM415_CarsonProjectile> ProjectileClass;
 
 	/** Sound to play each time we fire */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
@@ -43,7 +43,7 @@ public:
 
 	/** Attaches the actor to a FirstPersonCharacter */
 	UFUNCTION(BlueprintCallable, Category="Weapon")
-	void AttachWeapon(ACarson_FPS_GAM415Character* TargetCharacter);
+	void AttachWeapon(AGAM415_CarsonCharacter* TargetCharacter);
 
 	/** Make the weapon Fire a Projectile */
 	UFUNCTION(BlueprintCallable, Category="Weapon")
@@ -56,5 +56,5 @@ protected:
 
 private:
 	/** The Character holding this weapon*/
-	ACarson_FPS_GAM415Character* Character;
+	AGAM415_CarsonCharacter* Character;
 };

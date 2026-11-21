@@ -4,13 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Carson_FPS_GAM415Projectile.generated.h"
+#include "GAM415_CarsonProjectile.generated.h"
 
 class USphereComponent;
 class UProjectileMovementComponent;
 
 UCLASS(config=Game)
-class ACarson_FPS_GAM415Projectile : public AActor
+class AGAM415_CarsonProjectile : public AActor
 {
 	GENERATED_BODY()
 
@@ -22,23 +22,33 @@ class ACarson_FPS_GAM415Projectile : public AActor
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
 	UProjectileMovementComponent* ProjectileMovement;
 
+	// Reference to the ball mesh
 	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* ballMesh;
+		UStaticMeshComponent* ballMesh;
 
+	// Reference to the splat material
 	UPROPERTY(EditAnywhere)
-	UMaterial* baseMat;
+		UMaterial* splatMaterial;
 
+	// Make the random color variable
 	UPROPERTY()
-	FLinearColor randColor;
+		FLinearColor randomColor;
 
+	// The projectile material for the ball
 	UPROPERTY(EditAnywhere)
-	UMaterialInterface* projMat;
+		UMaterialInterface* projectileMaterial;
 
+	// The dynamic material instance
 	UPROPERTY()
-	UMaterialInstanceDynamic* dmiMat;
+		UMaterialInstanceDynamic* dmiMaterial;
 
 public:
-	ACarson_FPS_GAM415Projectile();
+	AGAM415_CarsonProjectile();
+
+protected:
+	virtual void BeginPlay();
+
+public:
 
 	/** called when projectile hits something */
 	UFUNCTION()
@@ -48,8 +58,5 @@ public:
 	USphereComponent* GetCollisionComp() const { return CollisionComp; }
 	/** Returns ProjectileMovement subobject **/
 	UProjectileMovementComponent* GetProjectileMovement() const { return ProjectileMovement; }
-
-protected:
-	virtual void BeginPlay();
 };
 

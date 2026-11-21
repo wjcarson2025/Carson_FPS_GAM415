@@ -1,7 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "Carson_FPS_GAM415Character.h"
-#include "Carson_FPS_GAM415Projectile.h"
+#include "GAM415_CarsonCharacter.h"
+#include "GAM415_CarsonProjectile.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -10,9 +10,9 @@
 
 
 //////////////////////////////////////////////////////////////////////////
-// ACarson_FPS_GAM415Character
+// AGAM415_CarsonCharacter
 
-ACarson_FPS_GAM415Character::ACarson_FPS_GAM415Character()
+AGAM415_CarsonCharacter::AGAM415_CarsonCharacter()
 {
 	// Character doesnt have a rifle at start
 	bHasRifle = false;
@@ -37,7 +37,7 @@ ACarson_FPS_GAM415Character::ACarson_FPS_GAM415Character()
 
 }
 
-void ACarson_FPS_GAM415Character::BeginPlay()
+void AGAM415_CarsonCharacter::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
@@ -55,7 +55,7 @@ void ACarson_FPS_GAM415Character::BeginPlay()
 
 //////////////////////////////////////////////////////////////////////////// Input
 
-void ACarson_FPS_GAM415Character::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
+void AGAM415_CarsonCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
 	// Set up action bindings
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
@@ -65,15 +65,15 @@ void ACarson_FPS_GAM415Character::SetupPlayerInputComponent(class UInputComponen
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
 
 		//Moving
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ACarson_FPS_GAM415Character::Move);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AGAM415_CarsonCharacter::Move);
 
 		//Looking
-		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ACarson_FPS_GAM415Character::Look);
+		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AGAM415_CarsonCharacter::Look);
 	}
 }
 
 
-void ACarson_FPS_GAM415Character::Move(const FInputActionValue& Value)
+void AGAM415_CarsonCharacter::Move(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D MovementVector = Value.Get<FVector2D>();
@@ -86,7 +86,7 @@ void ACarson_FPS_GAM415Character::Move(const FInputActionValue& Value)
 	}
 }
 
-void ACarson_FPS_GAM415Character::Look(const FInputActionValue& Value)
+void AGAM415_CarsonCharacter::Look(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
@@ -99,12 +99,12 @@ void ACarson_FPS_GAM415Character::Look(const FInputActionValue& Value)
 	}
 }
 
-void ACarson_FPS_GAM415Character::SetHasRifle(bool bNewHasRifle)
+void AGAM415_CarsonCharacter::SetHasRifle(bool bNewHasRifle)
 {
 	bHasRifle = bNewHasRifle;
 }
 
-bool ACarson_FPS_GAM415Character::GetHasRifle()
+bool AGAM415_CarsonCharacter::GetHasRifle()
 {
 	return bHasRifle;
 }

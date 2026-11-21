@@ -4,15 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "Carson_FPS_GAM415GameMode.generated.h"
+#include "GAM415_CarsonGameMode.generated.h"
 
 UCLASS(minimalapi)
-class ACarson_FPS_GAM415GameMode : public AGameModeBase
+class AGAM415_CarsonGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
 public:
-	ACarson_FPS_GAM415GameMode();
+	AGAM415_CarsonGameMode();
 };
 
 

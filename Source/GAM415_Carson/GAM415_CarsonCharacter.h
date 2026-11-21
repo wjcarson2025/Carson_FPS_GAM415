@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
-#include "Carson_FPS_GAM415Character.generated.h"
+#include "GAM415_CarsonCharacter.generated.h"
 
 class UInputComponent;
 class USkeletalMeshComponent;
@@ -15,7 +15,7 @@ class UAnimMontage;
 class USoundBase;
 
 UCLASS(config=Game)
-class ACarson_FPS_GAM415Character : public ACharacter
+class AGAM415_CarsonCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
@@ -41,7 +41,7 @@ class ACarson_FPS_GAM415Character : public ACharacter
 
 	
 public:
-	ACarson_FPS_GAM415Character();
+	AGAM415_CarsonCharacter();
 
 protected:
 	virtual void BeginPlay();

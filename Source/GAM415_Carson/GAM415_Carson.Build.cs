@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class Carson_FPS_GAM415 : ModuleRules
+public class GAM415_Carson : ModuleRules
 {
-	public Carson_FPS_GAM415(ReadOnlyTargetRules Target) : base(Target)
+	public GAM415_Carson(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 

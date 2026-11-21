@@ -3,13 +3,13 @@
 using UnrealBuildTool;
 using System.Collections.Generic;
 
-public class Carson_FPS_GAM415EditorTarget : TargetRules
+public class GAM415_CarsonEditorTarget : TargetRules
 {
-	public Carson_FPS_GAM415EditorTarget(TargetInfo Target) : base(Target)
+	public GAM415_CarsonEditorTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V2;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_1;
-		ExtraModuleNames.Add("Carson_FPS_GAM415");
+		ExtraModuleNames.Add("GAM415_Carson");
 	}
 }

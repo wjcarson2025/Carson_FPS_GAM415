@@ -1,10 +1,10 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "Carson_FPS_GAM415GameMode.h"
-#include "Carson_FPS_GAM415Character.h"
+#include "GAM415_CarsonGameMode.h"
+#include "GAM415_CarsonCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 
-ACarson_FPS_GAM415GameMode::ACarson_FPS_GAM415GameMode()
+AGAM415_CarsonGameMode::AGAM415_CarsonGameMode()
 	: Super()
 {
 	// set default pawn class to our Blueprinted character

@@ -2,8 +2,8 @@
 
 
 #include "TP_WeaponComponent.h"
-#include "Carson_FPS_GAM415Character.h"
-#include "Carson_FPS_GAM415Projectile.h"
+#include "GAM415_CarsonCharacter.h"
+#include "GAM415_CarsonProjectile.h"
 #include "GameFramework/PlayerController.h"
 #include "Camera/PlayerCameraManager.h"
 #include "Kismet/GameplayStatics.h"
@@ -41,7 +41,7 @@ void UTP_WeaponComponent::Fire()
 			ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
 	
 			// Spawn the projectile at the muzzle
-			World->SpawnActor<ACarson_FPS_GAM415Projectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+			World->SpawnActor<AGAM415_CarsonProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 		}
 	}
 	
@@ -63,7 +63,7 @@ void UTP_WeaponComponent::Fire()
 	}
 }
 
-void UTP_WeaponComponent::AttachWeapon(ACarson_FPS_GAM415Character* TargetCharacter)
+void UTP_WeaponComponent::AttachWeapon(AGAM415_CarsonCharacter* TargetCharacter)
 {
 	Character = TargetCharacter;
 	if (Character == nullptr)

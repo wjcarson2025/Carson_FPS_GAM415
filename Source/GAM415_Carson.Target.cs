@@ -3,13 +3,13 @@
 using UnrealBuildTool;
 using System.Collections.Generic;
 
-public class Carson_FPS_GAM415Target : TargetRules
+public class GAM415_CarsonTarget : TargetRules
 {
-	public Carson_FPS_GAM415Target(TargetInfo Target) : base(Target)
+	public GAM415_CarsonTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
 		DefaultBuildSettings = BuildSettingsVersion.V2;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_1;
-		ExtraModuleNames.Add("Carson_FPS_GAM415");
+		ExtraModuleNames.Add("GAM415_Carson");
 	}
 }
