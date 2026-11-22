@@ -6,6 +6,9 @@
 #include "Components/DecalComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
+#include "NiagaraFunctionLibrary.h"
+#include "NiagaraComponent.h"
+#include "CoreMinimal.h"
 
 AGAM415_CarsonProjectile::AGAM415_CarsonProjectile() 
 {
@@ -19,15 +22,6 @@ AGAM415_CarsonProjectile::AGAM415_CarsonProjectile()
 	CollisionComp->SetWalkableSlopeOverride(FWalkableSlopeOverride(WalkableSlope_Unwalkable, 0.f));
 	CollisionComp->CanCharacterStepUpOn = ECB_No;
 
-	// Create the ball static mesh component
-	ballMesh = CreateDefaultSubobject<UStaticMeshComponent>("Ball Mesh");
-
-	// Set as root component
-	RootComponent = CollisionComp;
-
-	// Link the ballMesh to the root component collider
-	ballMesh->SetupAttachment(CollisionComp);
-
 	// Use a ProjectileMovementComponent to govern this projectile's movement
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileComp"));
 	ProjectileMovement->UpdatedComponent = CollisionComp;
@@ -38,10 +32,21 @@ AGAM415_CarsonProjectile::AGAM415_CarsonProjectile()
 
 	// Die after 3 seconds by default
 	InitialLifeSpan = 3.0f;
+
+	// Create the ball static mesh component
+	ballMesh = CreateDefaultSubobject<UStaticMeshComponent>("Ball Mesh");
+
+	// Set as root component
+	RootComponent = CollisionComp;
+
+	// Link the ballMesh to the root component collider
+	ballMesh->SetupAttachment(CollisionComp);
 }
 
 void AGAM415_CarsonProjectile::BeginPlay()
 {
+	Super::BeginPlay();
+	
 	// Setup 3 float variables to assign the R, G and B values
 	float randNumR = UKismetMathLibrary::RandomFloatInRange(0.0f, 1.0f);
 	float randNumG = UKismetMathLibrary::RandomFloatInRange(0.0f, 1.0f);
@@ -68,7 +73,23 @@ void AGAM415_CarsonProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 	{
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
 
-		Destroy();
+		//Destroy();
+	}
+
+	// If the particle system has been assigned, run the code
+	if (particleSystem) {
+		// Create the particle system component
+		UNiagaraComponent* particleComp = UNiagaraFunctionLibrary::SpawnSystemAttached(particleSystem, HitComp, NAME_None, FVector(0.0f), FRotator(0.0f), EAttachLocation::KeepRelativeOffset, true);
+
+		// Set the randomColor property int he particle system
+		particleComp->SetNiagaraVariableLinearColor(FString("RandomColor"), randomColor);
+
+		// Destroy the ball
+		ballMesh->DestroyComponent();
+		
+		// Reset the collision to none
+		CollisionComp->BodyInstance.SetCollisionProfileName("NoCollision");
+
 	}
 
 	// If the ball hit another actor

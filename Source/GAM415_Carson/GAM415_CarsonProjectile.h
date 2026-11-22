@@ -8,6 +8,7 @@
 
 class USphereComponent;
 class UProjectileMovementComponent;
+class UNiagaraSystem;
 
 UCLASS(config=Game)
 class AGAM415_CarsonProjectile : public AActor
@@ -41,6 +42,10 @@ class AGAM415_CarsonProjectile : public AActor
 	// The dynamic material instance
 	UPROPERTY()
 		UMaterialInstanceDynamic* dmiMaterial;
+
+	// The partcle system
+	UPROPERTY(EditAnywhere)
+		UNiagaraSystem* particleSystem;
 
 public:
 	AGAM415_CarsonProjectile();
