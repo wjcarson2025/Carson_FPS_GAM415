@@ -9,6 +9,7 @@
 #include "NiagaraFunctionLibrary.h"
 #include "NiagaraComponent.h"
 #include "CoreMinimal.h"
+#include "PerlinProceduralTerrain.h"
 
 AGAM415_CarsonProjectile::AGAM415_CarsonProjectile() 
 {
@@ -73,7 +74,7 @@ void AGAM415_CarsonProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 	{
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
 
-		//Destroy();
+		Destroy();
 	}
 
 	// If the particle system has been assigned, run the code
@@ -108,5 +109,10 @@ void AGAM415_CarsonProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 		MatInstance->SetVectorParameterValue("Color", randomColor);
 		MatInstance->SetScalarParameterValue("Frame", frameNumber);
 
+		APerlinProceduralTerrain* procTerrain = Cast<APerlinProceduralTerrain>(OtherActor);
+
+		if (procTerrain) {
+			procTerrain->AlterMesh(Hit.ImpactPoint);
+		}
 	}
 }
