@@ -15,10 +15,12 @@ APortal::APortal()
 	mesh = CreateDefaultSubobject<UStaticMeshComponent>("Portal Mesh");
 	boxComp = CreateDefaultSubobject<UBoxComponent>("Collision Box");
 	sceneCapture = CreateDefaultSubobject<USceneCaptureComponent2D>("Capture Camera");
+	TPArrow = CreateDefaultSubobject<UArrowComponent>("TP Arrow");
 
 	// Setup the parent child attachments //
 	RootComponent = boxComp;
 	mesh->SetupAttachment(boxComp);
+	TPArrow->SetupAttachment(boxComp);
 	sceneCapture->SetupAttachment(mesh);
 
 	// Disable the collisions for the portal mesh //
@@ -56,7 +58,7 @@ void APortal::Tick(float DeltaTime)
 void APortal::OnOveralpBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	// Cast the player overlapping the portal to the player class in this project //
-	AGAM415_CarsonCharacter playerChar = Cast<AGAM415_CarsonCharacter>(OtherActor);
+	AGAM415_CarsonCharacter* playerChar = Cast<AGAM415_CarsonCharacter>(OtherActor);
 
 	// If the player char cast was valid //
 	if (playerChar)
@@ -71,7 +73,8 @@ void APortal::OnOveralpBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherA
 				playerChar->isTeleporting = true;
 
 				// Get the location of the other portal
-				FVector loc = OtherPortal->GetActorLocation();
+				//FVector loc = OtherPortal->GetActorLocation();
+				FVector loc = OtherPortal->TPArrow->GetComponentLocation();
 
 				// Teleport the plaer to that location
 				playerChar->SetActorLocation(loc);

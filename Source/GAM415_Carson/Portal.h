@@ -7,6 +7,7 @@
 #include "Components/SceneCaptureComponent2D.h"
 #include "Engine/TextureRenderTarget2D.h"
 #include "Components/BoxComponent.h"
+#include "Components/ArrowComponent.h"
 #include "Portal.generated.h"
 
 class GAM415_CarsonCharacter;
@@ -35,6 +36,10 @@ public:
 	// The scene capture camera component //
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	USceneCaptureComponent2D* sceneCapture;
+
+	// Arrow component to move the player to on teleport //
+	UPROPERTY(EditAnywhere)
+	UArrowComponent* TPArrow;
 
 	// The render target texture for the material //
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
